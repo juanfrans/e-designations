@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8" />
+        <title>E-Designations</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+        <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="toggles">
+            <input class="dib v-mid" type="checkbox" id="2017" name="2017" value="2017">
+            <label class='code f7 dib v-mid' for="2017">Sites only on the 2017 dataset</label>
+            <svg class="dib v-mid" height="8" width="8"><circle cx="4" cy="4" r="4" fill="#FFB700"></circle></svg><br>
+            <input type="checkbox" id="2021" name="2021" value="2021">
+            <label class='code f7' for="2021">Sites only on the 2021 dataset</label>
+            <svg class="dib v-mid" height="8" width="8"><circle cx="4" cy="4" r="4" fill="#19A974"></circle></svg><br>
+            <input type="checkbox" id="both" name="both" value="both">
+            <label class='code f7' for="both">Sites on both datasets</label>
+            <svg class="dib v-mid" height="8" width="8"><circle cx="4" cy="4" r="4" fill="#96CCFF"></circle></svg><br>
+        </div>
+        <div id="map"></div>
+        <script src='map.js'></script>
+    </body>
+</html>
