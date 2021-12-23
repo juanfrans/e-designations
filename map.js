@@ -1,6 +1,8 @@
-var check2017 = document.getElementById("2017");
-var check2021 = document.getElementById("2021");
-var checkBoth = document.getElementById("both");
+// var check2017 = document.getElementById("2017");
+// var check2021 = document.getElementById("2021");
+// var checkBoth = document.getElementById("both");
+var checkeDesignations = document.getElementById("eDesignations");
+var checkCleanupSites = document.getElementById("cleanupSites");
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiamZzMjExOCIsImEiOiJlMUQzd2YwIn0.WLb3PYDt2z-XttOLFcQlVQ';
 const map = new mapboxgl.Map({
@@ -14,6 +16,58 @@ const map = new mapboxgl.Map({
 map.on('load', function () {
     map.addLayer(
         {
+            id: 'eDesignations',
+            type: 'circle',
+            source: {
+                type: 'geojson',
+                data: 'data/eDesignationsSPEED.geojson'
+            },
+            layout: {
+                visibility: 'visible'
+            },
+            paint: {
+                'circle-color': '#A463F2',
+                'circle-radius': [
+                    'interpolate',
+                    ['exponential', 2],
+                    ['zoom'],
+                    10,
+                    2.5,
+                    16,
+                    6
+                ]
+            }
+        },
+        'road-label'
+    );
+    map.addLayer(
+        {
+            id: 'oerCleanupSites',
+            type: 'circle',
+            source: {
+                type: 'geojson',
+                data: 'data/oerCleanupSites.geojson'
+            },
+            layout: {
+                visibility: 'visible'
+            },
+            paint: {
+                'circle-color': '#FFB700',
+                'circle-radius': [
+                    'interpolate',
+                    ['exponential', 2],
+                    ['zoom'],
+                    10,
+                    2.5,
+                    16,
+                    6
+                ]
+            }
+        },
+        'road-label'
+    );
+    map.addLayer(
+        {
             id: 'eData2017',
             type: 'circle',
             source: {
@@ -21,7 +75,7 @@ map.on('load', function () {
                 data: 'data/eDataOnly2017.geojson'
             },
             layout: {
-                visibility: 'visible'
+                visibility: 'none'
             },
             paint: {
                 'circle-color': '#FFB700',
@@ -47,7 +101,7 @@ map.on('load', function () {
                 data: 'data/eDataOnly2021.geojson'
             },
             layout: {
-                visibility: 'visible'
+                visibility: 'none'
             },
             paint: {
                 'circle-color': '#19A974',
@@ -73,7 +127,7 @@ map.on('load', function () {
                 data: 'data/eDataOnlyBoth.geojson'
             },
             layout: {
-                visibility: 'visible'
+                visibility: 'none'
             },
             paint: {
                 'circle-color': '#96CCFF',
@@ -165,33 +219,53 @@ map.on('mouseenter', 'eDataBoth', function() {
 map.on('mouseleave', 'eDataBoth', function() {
     map.getCanvas().style.cursor = '';
 });
-check2017.onclick = function () {
+// check2017.onclick = function () {
+//     if (this.checked) {
+//         console.log('Checked 2017...');
+//         map.setLayoutProperty('eData2017', 'visibility', 'visible');
+//     }
+//     else {
+//         console.log('Unchecked 2017...');
+//         map.setLayoutProperty('eData2017', 'visibility', 'none');
+//     }
+// }
+// check2021.onclick = function () {
+//     if (this.checked) {
+//         console.log('Checked 2021...');
+//         map.setLayoutProperty('eData2021', 'visibility', 'visible');
+//     }
+//     else {
+//         console.log('Unchecked 2021...');
+//         map.setLayoutProperty('eData2021', 'visibility', 'none');
+//     }
+// }
+// checkBoth.onclick = function () {
+//     if (this.checked) {
+//         console.log('Checked both...');
+//         map.setLayoutProperty('eDataBoth', 'visibility', 'visible');
+//     }
+//     else {
+//         console.log('Unchecked both...');
+//         map.setLayoutProperty('eDataBoth', 'visibility', 'none');
+//     }
+// }
+checkeDesignations.onclick = function () {
     if (this.checked) {
-        console.log('Checked 2017...');
-        map.setLayoutProperty('eData2017', 'visibility', 'visible');
+        console.log('Checked eDesignations...');
+        map.setLayoutProperty('eDesignations', 'visibility', 'visible');
     }
     else {
-        console.log('Unchecked 2017...');
-        map.setLayoutProperty('eData2017', 'visibility', 'none');
+        console.log('Unchecked eDesignations...');
+        map.setLayoutProperty('eDesignations', 'visibility', 'none');
     }
 }
-check2021.onclick = function () {
+checkCleanupSites.onclick = function () {
     if (this.checked) {
-        console.log('Checked 2021...');
-        map.setLayoutProperty('eData2021', 'visibility', 'visible');
+        console.log('Checked cleanupSites...');
+        map.setLayoutProperty('oerCleanupSites', 'visibility', 'visible');
     }
     else {
-        console.log('Unchecked 2021...');
-        map.setLayoutProperty('eData2021', 'visibility', 'none');
-    }
-}
-checkBoth.onclick = function () {
-    if (this.checked) {
-        console.log('Checked both...');
-        map.setLayoutProperty('eDataBoth', 'visibility', 'visible');
-    }
-    else {
-        console.log('Unchecked both...');
-        map.setLayoutProperty('eDataBoth', 'visibility', 'none');
+        console.log('Unchecked cleanupSites...');
+        map.setLayoutProperty('oerCleanupSites', 'visibility', 'none');
     }
 }
