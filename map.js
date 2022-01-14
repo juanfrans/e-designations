@@ -1,8 +1,6 @@
-// var check2017 = document.getElementById("2017");
-// var check2021 = document.getElementById("2021");
-// var checkBoth = document.getElementById("both");
 var checkeDesignations = document.getElementById("eDesignations");
 var checkCleanupSites = document.getElementById("cleanupSites");
+var melissaSites = document.getElementById("melissaSites");
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiamZzMjExOCIsImEiOiJlMUQzd2YwIn0.WLb3PYDt2z-XttOLFcQlVQ';
 const map = new mapboxgl.Map({
@@ -68,17 +66,17 @@ map.on('load', function () {
     );
     map.addLayer(
         {
-            id: 'eData2017',
+            id: 'melissaSites',
             type: 'circle',
             source: {
                 type: 'geojson',
-                data: 'data/eDataOnly2017.geojson'
+                data: 'data/BrownfieldsUpdated.geojson'
             },
             layout: {
-                visibility: 'none'
+                visibility: 'visible'
             },
             paint: {
-                'circle-color': '#FFB700',
+                'circle-color': '#20D2F8',
                 'circle-radius': [
                     'interpolate',
                     ['exponential', 2],
@@ -92,163 +90,183 @@ map.on('load', function () {
         },
         'road-label'
     );
-    map.addLayer(
-        {
-            id: 'eData2021',
-            type: 'circle',
-            source: {
-                type: 'geojson',
-                data: 'data/eDataOnly2021.geojson'
-            },
-            layout: {
-                visibility: 'none'
-            },
-            paint: {
-                'circle-color': '#19A974',
-                'circle-radius': [
-                    'interpolate',
-                    ['exponential', 2],
-                    ['zoom'],
-                    10,
-                    2.5,
-                    16,
-                    6
-                ]
-            }
-        },
-        'road-label'
-    );
-    map.addLayer(
-        {
-            id: 'eDataBoth',
-            type: 'circle',
-            source: {
-                type: 'geojson',
-                data: 'data/eDataOnlyBoth.geojson'
-            },
-            layout: {
-                visibility: 'none'
-            },
-            paint: {
-                'circle-color': '#96CCFF',
-                'circle-radius': [
-                    'interpolate',
-                    ['exponential', 2],
-                    ['zoom'],
-                    10,
-                    2.5,
-                    16,
-                    6
-                ]
-            }
-        },
-        'road-label'
-    );
+    // map.addLayer(
+    //     {
+    //         id: 'eData2017',
+    //         type: 'circle',
+    //         source: {
+    //             type: 'geojson',
+    //             data: 'data/eDataOnly2017.geojson'
+    //         },
+    //         layout: {
+    //             visibility: 'none'
+    //         },
+    //         paint: {
+    //             'circle-color': '#FFB700',
+    //             'circle-radius': [
+    //                 'interpolate',
+    //                 ['exponential', 2],
+    //                 ['zoom'],
+    //                 10,
+    //                 2.5,
+    //                 16,
+    //                 6
+    //             ]
+    //         }
+    //     },
+    //     'road-label'
+    // );
+    // map.addLayer(
+    //     {
+    //         id: 'eData2021',
+    //         type: 'circle',
+    //         source: {
+    //             type: 'geojson',
+    //             data: 'data/eDataOnly2021.geojson'
+    //         },
+    //         layout: {
+    //             visibility: 'none'
+    //         },
+    //         paint: {
+    //             'circle-color': '#19A974',
+    //             'circle-radius': [
+    //                 'interpolate',
+    //                 ['exponential', 2],
+    //                 ['zoom'],
+    //                 10,
+    //                 2.5,
+    //                 16,
+    //                 6
+    //             ]
+    //         }
+    //     },
+    //     'road-label'
+    // );
+    // map.addLayer(
+    //     {
+    //         id: 'eDataBoth',
+    //         type: 'circle',
+    //         source: {
+    //             type: 'geojson',
+    //             data: 'data/eDataOnlyBoth.geojson'
+    //         },
+    //         layout: {
+    //             visibility: 'none'
+    //         },
+    //         paint: {
+    //             'circle-color': '#96CCFF',
+    //             'circle-radius': [
+    //                 'interpolate',
+    //                 ['exponential', 2],
+    //                 ['zoom'],
+    //                 10,
+    //                 2.5,
+    //                 16,
+    //                 6
+    //             ]
+    //         }
+    //     },
+    //     'road-label'
+    // );
 });
 
-map.on('click', 'eData2017', function (e) {
+// map.on('click', 'eData2017', function (e) {
+//     console.log('Clicked on ' + String(e.features.length) + ' features...');
+//     createPopup(e, e.lngLat, '2017');
+// });
+// map.on('click', 'eData2021', function (e) {
+//     console.log('Clicked on ' + String(e.features.length) + ' features...');
+//     createPopup(e, e.lngLat, '2021');
+// });
+// map.on('click', 'eDataBoth', function (e) {
+//     console.log('Clicked on ' + String(e.features.length) + ' features...');
+//     createPopup(e, e.lngLat, 'Both');
+// });
+
+map.on('click', 'eDesignations', function (e) {
     console.log('Clicked on ' + String(e.features.length) + ' features...');
-    createPopup(e, e.lngLat, '2017');
+    createPopup(e, e.lngLat, 'eDesignation');
 });
-map.on('click', 'eData2021', function (e) {
+map.on('click', 'oerCleanupSites', function (e) {
     console.log('Clicked on ' + String(e.features.length) + ' features...');
-    createPopup(e, e.lngLat, '2021');
+    createPopup(e, e.lngLat, 'oerCleanupSites');
 });
-map.on('click', 'eDataBoth', function (e) {
-    console.log('Clicked on ' + String(e.features.length) + ' features...');
-    createPopup(e, e.lngLat, 'Both');
-});
-function createPopup(entries, lngLat, year){
+
+function createPopup(entries, lngLat, type){
     let popuphtml = '';
     let counter = 1;
-    entries.features.forEach((element) => {
-        let eNumber = element.properties.ENUMBER;
-        let ceqr = element.properties.CEQR_NUM;
-        let ulurp = element.properties.ULURP_NUM;
-        let bbl = element.properties.BBL;
-        let borough = element.properties.BORO;
-        let datasetYear = '';
-        if (year == '2017') {
-            datasetYear = '2017';
-        }
-        else if (year == '2021') {
-            datasetYear = '2021';
-        }
-        else {
-            datasetYear = '2017 and 2021'
-        }
-        if (counter == entries.features.length) {
-            popuphtml += '<div class="code f7"><p><u>E-Number</u>: ' + eNumber +
-            '<br><u>CEQR Number</u>: ' + ceqr +
-            '<br><u>ULURP Number</u>: ' + ulurp +
-            '<br><u>BBL Number</u>: ' + bbl +
-            '<br><u>Borough</u>: ' + borough +
-            '<br><u>Dataset</u>: ' + datasetYear + '</p></div>';
-        }
-        else {
-            popuphtml += '<div class="code f7 bb b--light-silver"><p><u>E-Number</u>: ' + eNumber +
-            '<br><u>CEQR Number</u>: ' + ceqr +
-            '<br><u>ULURP Number</u>: ' + ulurp +
-            '<br><u>BBL Number</u>: ' + bbl +
-            '<br><u>Borough</u>: ' + borough +
-            '<br><u>Dataset</u>: ' + datasetYear + '</p></div>';
-        }
-        counter += 1;
-    });
+    if (type == 'eDesignation'){
+        entries.features.forEach((element) => {
+            let address = element.properties.address;
+            let ceqr = element.properties.ceqrnumber;
+            let effectivedate = element.properties.effectivedate;
+            let thisType = element.properties.type;
+            let ulurp = element.properties.ulurp_num;
+            let eNumber = element.properties.number;
+            if (counter == entries.features.length){
+                popuphtml += '<div class="code f7"><p>E-Designation Site' +
+                '<br><u>E-Number</u>: ' + eNumber +
+                '<br><u>CEQR Number</u>: ' + ceqr +
+                '<br><u>ULURP Number</u>: ' + ulurp +
+                '<br><u>Contamination Type</u>: ' + thisType +
+                '<br><u>Effective Date</u>: ' + effectivedate +
+                '<br><u>Address</u>: ' + address + '</p></div>';
+            }
+            else {
+                popuphtml += '<div class="code f7 bb b--light-silver"><p>E-Designation Site' +
+                '<br><u>E-Number</u>: ' + eNumber +
+                '<br><u>CEQR Number</u>: ' + ceqr +
+                '<br><u>ULURP Number</u>: ' + ulurp +
+                '<br><u>Contamination Type</u>: ' + thisType +
+                '<br><u>Effective Date</u>: ' + effectivedate +
+                '<br><u>Address</u>: ' + address + '</p></div>';
+            }
+            counter += 1;
+        });
+    }
+    else {
+        entries.features.forEach((element) => {
+            let address = element.properties['Street Number'] + ' ' + element.properties['Street Name'];
+            let oerProgram = element.properties['OER Program'];
+            let projectClass = element.properties.Class;
+            let phase = element.properties.Phase;
+            let site = element.properties['Project-Specific Document Repository page'];
+            if (counter == entries.features.length){
+                popuphtml += '<div class="code f7"><p>OER Cleanup Site' +
+                '<br><u>OER Program</u>: ' + oerProgram +
+                '<br><u>Project Class</u>: ' + projectClass +
+                '<br><u>Phase</u>: ' + phase +
+                '<br><u>Documentation URL</u>: ' + site + '</p></div>';
+            }
+            else {
+                popuphtml += '<div class="code f7 bb b--light-silver"><p>OER Cleanup Site' +
+                '<br><u>OER Program</u>: ' + oerProgram +
+                '<br><u>Project Class</u>: ' + projectClass +
+                '<br><u>Phase</u>: ' + phase +
+                '<br><u>Documentation URL</u>: ' + site + '</p></div>';
+            }
+            counter += 1;
+        });
+    }
     popup = new mapboxgl.Popup({})
         .setLngLat(lngLat)
         .setHTML(popuphtml)
         .addTo(map);
-};
+}
 
-map.on('mouseenter', 'eData2017', function() {
+map.on('mouseenter', 'eDesignations', function() {
     map.getCanvas().style.cursor = 'pointer';
 });
-map.on('mouseleave', 'eData2017', function() {
-    map.getCanvas().style.cursor = '';
-});
-map.on('mouseenter', 'eData2021', function() {
+map.on('mouseenter', 'oerCleanupSites', function() {
     map.getCanvas().style.cursor = 'pointer';
 });
-map.on('mouseleave', 'eData2021', function() {
+map.on('mouseleave', 'eDesignations', function() {
     map.getCanvas().style.cursor = '';
 });
-map.on('mouseenter', 'eDataBoth', function() {
-    map.getCanvas().style.cursor = 'pointer';
-});
-map.on('mouseleave', 'eDataBoth', function() {
+map.on('mouseleave', 'oerCleanupSites', function() {
     map.getCanvas().style.cursor = '';
 });
-// check2017.onclick = function () {
-//     if (this.checked) {
-//         console.log('Checked 2017...');
-//         map.setLayoutProperty('eData2017', 'visibility', 'visible');
-//     }
-//     else {
-//         console.log('Unchecked 2017...');
-//         map.setLayoutProperty('eData2017', 'visibility', 'none');
-//     }
-// }
-// check2021.onclick = function () {
-//     if (this.checked) {
-//         console.log('Checked 2021...');
-//         map.setLayoutProperty('eData2021', 'visibility', 'visible');
-//     }
-//     else {
-//         console.log('Unchecked 2021...');
-//         map.setLayoutProperty('eData2021', 'visibility', 'none');
-//     }
-// }
-// checkBoth.onclick = function () {
-//     if (this.checked) {
-//         console.log('Checked both...');
-//         map.setLayoutProperty('eDataBoth', 'visibility', 'visible');
-//     }
-//     else {
-//         console.log('Unchecked both...');
-//         map.setLayoutProperty('eDataBoth', 'visibility', 'none');
-//     }
-// }
+
 checkeDesignations.onclick = function () {
     if (this.checked) {
         console.log('Checked eDesignations...');
@@ -267,5 +285,15 @@ checkCleanupSites.onclick = function () {
     else {
         console.log('Unchecked cleanupSites...');
         map.setLayoutProperty('oerCleanupSites', 'visibility', 'none');
+    }
+}
+melissaSites.onclick = function () {
+    if (this.checked) {
+        console.log('Checked Melissa sites...');
+        map.setLayoutProperty('melissaSites', 'visibility', 'visible');
+    }
+    else {
+        console.log('Unchecked Melissa sites...');
+        map.setLayoutProperty('melissaSites', 'visibility', 'none');
     }
 }
