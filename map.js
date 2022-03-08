@@ -12,6 +12,30 @@ const map = new mapboxgl.Map({
 });
 
 map.on('load', function () {
+    // var layers = map.getStyle().layers;
+    // for (var i = 0; i < layers.length; i++) {
+    //     console.log(layers[i].id);
+    // }
+    map.addLayer(
+        {
+            id: 'gentrificationIndex',
+            type: 'fill',
+            source: {
+                type: 'geojson',
+                data: 'data/gentrificationIndex.geojson'
+            },
+            layout: {
+                visibility: 'visible'
+            },
+            paint: {
+                'fill-color': ['interpolate', ['linear'], ['get', 'scoreScaled'],
+                0, '#c0e6ba',
+                1, '#0e7735'],
+            'fill-opacity': ['case', ['==', ['get', 'scoreScaled'], null], 0, 1]
+            }
+        },
+        'road-label'
+    )
     map.addLayer(
         {
             id: 'eDesignations',
