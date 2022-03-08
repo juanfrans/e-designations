@@ -29,7 +29,7 @@ map.on('load', function () {
             },
             paint: {
                 'fill-color': ['interpolate', ['linear'], ['get', 'scoreScaled'],
-                0, '#c0e6ba',
+                0, '#ffffff',
                 1, '#0e7735'],
             'fill-opacity': ['case', ['==', ['get', 'scoreScaled'], null], 0, 1]
             }
