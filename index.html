@@ -11,15 +11,23 @@
     </head>
     <body>
         <div id="toggles">
-            <input type="checkbox" id="eDesignations" name="eDesignations" value="eDesignations" checked>
+            <input type="checkbox" id="eDesignations" name="eDesignations" value="eDesignations" unchecked>
             <label class='code f7' for="eDesignations">E-Designations from SPEED</label>
             <svg class="dib v-mid" height="8" width="8"><circle cx="4" cy="4" r="4" fill="#A463F2 "></circle></svg><br>
             <input type="checkbox" id="cleanupSites" name="cleanupSites" value="cleanupSites" checked>
             <label class='code f7' for="cleanupSites">OER cleanup sites</label>
             <svg class="dib v-mid" height="8" width="8"><circle cx="4" cy="4" r="4" fill="#FFB700"></circle></svg><br>
-            <input type="checkbox" id="melissaSites" name="melissaSites" value="melissaSites" checked>
+            <input type="checkbox" id="melissaSites" name="melissaSites" value="melissaSites" unchecked>
             <label class='code f7' for="melissaSites">Melissa sites</label>
             <svg class="dib v-mid" height="8" width="8"><circle cx="4" cy="4" r="4" fill="#20D2F8"></circle></svg><br>
+            <div id="income-legend" class="legend">
+                <p class="code f7">Gentrification Index</p>
+                <svg class="dib v-mid" height="18" width="18"><rect x="0" width="15" height="15" rx="2" fill="#b2e0ac" stroke="black" stroke-width="0.5"/></svg><p class="dib v-mid code f7 lh-copy pl1 mv0">Bottom 20%</p><br>
+                <svg class="dib v-mid" height="18" width="18"><rect x="0" width="15" height="15" rx="2" fill="#8ccf8a" stroke="black" stroke-width="0.5"/></svg><p class="dib v-mid code f7 lh-copy pl1 mv0">20% - 40%</p><br>
+                <svg class="dib v-mid" height="18" width="18"><rect x="0" width="15" height="15" rx="2" fill="#60ba6c" stroke="black" stroke-width="0.5"/></svg><p class="dib v-mid code f7 lh-copy pl1 mv0">40% - 60%</p><br>
+                <svg class="dib v-mid" height="18" width="18"><rect x="0" width="15" height="15" rx="2" fill="#39a055" stroke="black" stroke-width="0.5"/></svg><p class="dib v-mid code f7 lh-copy pl1 mv0">60% - 80%</p><br>
+                <svg class="dib v-mid" height="18" width="18"><rect x="0" width="15" height="15" rx="2" fill="#1a833e" stroke="black" stroke-width="0.5"/></svg><p class="dib v-mid code f7 lh-copy pl1 mv0">Top 80%</p>
+            </div>
         </div>
         <div id="map"></div>
         <script src='map.js'></script>

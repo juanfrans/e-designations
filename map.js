@@ -27,10 +27,19 @@ map.on('load', function () {
             layout: {
                 visibility: 'visible'
             },
+            // paint: {
+            //     'fill-color': ['interpolate', ['linear'], ['get', 'scoreScaled'],
+            //     0, '#ffffff',
+            //     1, '#0e7735'],
+            // 'fill-opacity': ['case', ['==', ['get', 'scoreScaled'], null], 0, 1]
+            // }
             paint: {
-                'fill-color': ['interpolate', ['linear'], ['get', 'scoreScaled'],
-                0, '#ffffff',
-                1, '#0e7735'],
+                'fill-color': ['step', ['get', 'scoreScaled'],
+                '#b2e0ac',
+                0.509, '#8ccf8a',
+                0.542, '#60ba6c',
+                0.585, '#39a055',
+                0.658, '#1a833e'],
             'fill-opacity': ['case', ['==', ['get', 'scoreScaled'], null], 0, 1]
             }
         },
@@ -45,7 +54,7 @@ map.on('load', function () {
                 data: 'data/eDesignationsSPEED.geojson'
             },
             layout: {
-                visibility: 'visible'
+                visibility: 'none'
             },
             paint: {
                 'circle-color': '#A463F2',
@@ -97,7 +106,7 @@ map.on('load', function () {
                 data: 'data/BrownfieldsUpdated.geojson'
             },
             layout: {
-                visibility: 'visible'
+                visibility: 'none'
             },
             paint: {
                 'circle-color': '#20D2F8',
