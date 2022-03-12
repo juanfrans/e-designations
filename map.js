@@ -1,6 +1,22 @@
 var checkeDesignations = document.getElementById("eDesignations");
 var checkCleanupSites = document.getElementById("cleanupSites");
 var melissaSites = document.getElementById("melissaSites");
+var quantiles = document.getElementById("quantiles");
+var naturalBreaks = document.getElementById("naturalBreaks");
+
+var quantilesFillColor = ['step', ['get', 'scoreScaled'],
+'#b2e0ac',
+0.509, '#8ccf8a',
+0.542, '#60ba6c',
+0.585, '#39a055',
+0.658, '#1a833e']
+
+var naturalBreaksFillColor = ['step', ['get', 'scoreScaled'],
+'#b2e0ac',
+0.25, '#8ccf8a',
+0.50, '#60ba6c',
+0.60, '#39a055',
+0.75, '#1a833e']
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiamZzMjExOCIsImEiOiJlMUQzd2YwIn0.WLb3PYDt2z-XttOLFcQlVQ';
 const map = new mapboxgl.Map({
@@ -34,12 +50,7 @@ map.on('load', function () {
             // 'fill-opacity': ['case', ['==', ['get', 'scoreScaled'], null], 0, 1]
             // }
             paint: {
-                'fill-color': ['step', ['get', 'scoreScaled'],
-                '#b2e0ac',
-                0.509, '#8ccf8a',
-                0.542, '#60ba6c',
-                0.585, '#39a055',
-                0.658, '#1a833e'],
+                'fill-color': quantilesFillColor,
             'fill-opacity': ['case', ['==', ['get', 'scoreScaled'], null], 0, 1]
             }
         },
@@ -328,5 +339,29 @@ melissaSites.onclick = function () {
     else {
         console.log('Unchecked Melissa sites...');
         map.setLayoutProperty('melissaSites', 'visibility', 'none');
+    }
+}
+quantiles.onclick = function () {
+    if (this.checked) {
+        console.log('Checked quantiles...');
+        map.setPaintProperty('gentrificationIndex', 'fill-color', quantilesFillColor);
+        naturalBreaks.checked = false;
+    }
+    else {
+        console.log('Unchecked quantiles...');
+        map.setPaintProperty('gentrificationIndex', 'fill-color', naturalBreaksFillColor);
+        naturalBreaks.checked = true;
+    }
+}
+naturalBreaks.onclick = function () {
+    if (this.checked) {
+        console.log('Checked naturalBreaks...');
+        map.setPaintProperty('gentrificationIndex', 'fill-color', naturalBreaksFillColor);
+        quantiles.checked = false;
+    }
+    else {
+        console.log('Unchecked naturalBreaks...');
+        map.setPaintProperty('gentrificationIndex', 'fill-color', quantilesFillColor);
+        quantiles.checked = true;
     }
 }
