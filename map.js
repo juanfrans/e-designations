@@ -28,10 +28,10 @@ const map = new mapboxgl.Map({
 });
 
 map.on('load', function () {
-    var layers = map.getStyle().layers;
-    for (var i = 0; i < layers.length; i++) {
-        console.log(layers[i].id);
-    }
+    // var layers = map.getStyle().layers;
+    // for (var i = 0; i < layers.length; i++) {
+    //     console.log(layers[i].id);
+    // }
     map.addLayer(
         {
             id: 'gentrificationIndex',
