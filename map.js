@@ -21,7 +21,7 @@ var naturalBreaksFillColor = ['step', ['get', 'scoreScaled'],
 mapboxgl.accessToken = 'pk.eyJ1IjoiamZzMjExOCIsImEiOiJlMUQzd2YwIn0.WLb3PYDt2z-XttOLFcQlVQ';
 const map = new mapboxgl.Map({
   container: "map",
-  style: 'mapbox://styles/jfs2118/ckx7rlwjb3i1614ntqfl6x3fj',
+  style: 'mapbox://styles/jfs2118/cl117rf58000o16o7qvbgnyvc',
   center: [-73.981, 40.668],
   zoom: 10,
   projection: 'naturalEarth'
@@ -54,7 +54,7 @@ map.on('load', function () {
             'fill-opacity': ['case', ['==', ['get', 'scoreScaled'], null], 0, 1]
             }
         },
-        'road-label-simple'
+        'waterway-label'
     )
     map.addLayer(
         {
@@ -80,7 +80,7 @@ map.on('load', function () {
                 ]
             }
         },
-        'road-label-simple'
+        'waterway-label'
     );
     map.addLayer(
         {
@@ -106,7 +106,7 @@ map.on('load', function () {
                 ]
             }
         },
-        'road-label-simple'
+        'waterway-label'
     );
     map.addLayer(
         {
@@ -132,7 +132,7 @@ map.on('load', function () {
                 ]
             }
         },
-        'road-label-simple'
+        'waterway-label'
     );
     // map.addLayer(
     //     {
